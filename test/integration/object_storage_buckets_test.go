@@ -10,8 +10,10 @@ import (
 )
 
 var testObjectStorageBucketCreateOpts = ObjectStorageBucketCreateOptions{
-	Cluster: "us-east-1",
-	Label:   fmt.Sprintf("linodego-test-bucket-%d", time.Now().UnixNano()),
+	Cluster:     "us-east-1",
+	Label:       fmt.Sprintf("linodego-test-bucket-%d", time.Now().UnixNano()),
+	ACL:         ACLPublicRead,
+	CorsEnabled: &[]bool{true}[0], // This should normally be stored in its own variable as a normal bool
 }
 
 func TestCreateObjectStorageBucket(t *testing.T) {

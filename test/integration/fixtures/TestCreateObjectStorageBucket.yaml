@@ -2,7 +2,7 @@
 version: 1
 interactions:
 - request:
-    body: '{"cluster":"us-east-1","label":"linodego-test-bucket-1603371589949339000"}'
+    body: '{"cluster":"us-east-1","label":"linodego-test-bucket-1615911404053257000","acl":"public-read","cors_enabled":true}'
     form: {}
     headers:
       Accept:
@@ -14,7 +14,7 @@ interactions:
     url: https://api.linode.com/v4beta/object-storage/buckets
     method: POST
   response:
-    body: '{"hostname": "linodego-test-bucket-1603371589949339000.us-east-1.linodeobjects.com", "label": "linodego-test-bucket-1603371589949339000", "created": "2018-01-02T03:04:05", "cluster": "us-east-1", "size": 0}'
+    body: '{"hostname": "linodego-test-bucket-1615911404053257000.us-east-1.linodeobjects.com", "label": "linodego-test-bucket-1615911404053257000", "created": "2018-01-02T03:04:05", "cluster": "us-east-1", "size": 0, "objects": 0}'
     headers:
       Access-Control-Allow-Credentials:
       - "true"
@@ -29,7 +29,7 @@ interactions:
       Cache-Control:
       - private, max-age=60, s-maxage=60
       Content-Length:
-      - "206"
+      - "220"
       Content-Security-Policy:
       - default-src 'none'
       Content-Type:
@@ -66,7 +66,7 @@ interactions:
       - application/json
       User-Agent:
       - linodego https://github.com/linode/linodego
-    url: https://api.linode.com/v4beta/object-storage/buckets/us-east-1/linodego-test-bucket-1603371589949339000
+    url: https://api.linode.com/v4beta/object-storage/buckets/us-east-1/linodego-test-bucket-1615911404053257000
     method: DELETE
   response:
     body: '{}'
