@@ -95,6 +95,36 @@ func TestListObjectStorageBuckets(t *testing.T) {
 	}
 }
 
+func TestUpdateObjectStorageBucketAccess(t *testing.T) {
+	client, bucket, teardown, err := setupObjectStorageBucket(t, "fixtures/TestUpdateObjectStorageBucketAccess")
+	defer teardown()
+
+	corsEnabled := false
+
+	opts := ObjectStorageBucketUpdateAccessOptions{
+		ACL: ACLPublicReadWrite,
+		CorsEnabled: &corsEnabled,
+	}
+
+	err = client.UpdateObjectStorageBucketAccess(context.Background(), bucket.Cluster, bucket.Label, opts)
+	if err != nil {
+		t.Errorf("Error updating ObjectStorageBucket access, got error %s", err)
+	}
+
+	newBucket, err := client.GetObjectStorageBucketAccess(context.Background(), bucket.Cluster, bucket.Label)
+	if err != nil {
+		t.Errorf("Error getting ObjectStorageBucket access, got error %s", err)
+	}
+
+	if newBucket.CorsEnabled != corsEnabled {
+		t.Errorf("ObjectStorageBucket access CORS does not match update, expected %t, got %t", corsEnabled, newBucket.CorsEnabled)
+	}
+
+	if newBucket.ACL != opts.ACL {
+		t.Errorf("ObjectStorageBucket access ACL does not match update, expected %s, got %s", opts.ACL, newBucket.ACL)
+	}
+}
+
 func setupObjectStorageBucket(t *testing.T, fixturesYaml string) (*Client, *ObjectStorageBucket, func(), error) {
 	t.Helper()
 
