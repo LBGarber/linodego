@@ -56,7 +56,7 @@ type ObjectStorageBucketCreateOptions struct {
 // ObjectStorageBucketUpdateAccessOptions fields are those accepted by UpdateObjectStorageBucketAccess
 type ObjectStorageBucketUpdateAccessOptions struct {
 	ACL         ObjectStorageACL `json:"acl,omitempty"`
-	CorsEnabled *bool             `json:"cors_enabled,omitempty"`
+	CorsEnabled *bool            `json:"cors_enabled,omitempty"`
 }
 
 // ObjectStorageACL options start with ACL and include all known ACL types
