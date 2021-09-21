@@ -307,7 +307,14 @@ func (client Client) WaitForEventFinished(ctx context.Context, id interface{}, e
 				filter.Add(&Comp{"id", Gte, lastEventID})
 			}
 
-			listOptions := NewListOptions(pages, filter.JSON())
+			filterStr, err := filter.MarshalJSON()
+			if err != nil {
+				return nil, err
+			}
+
+			fmt.Println(string(filterStr))
+
+			listOptions := NewListOptions(pages, string(filterStr))
 
 			events, err := client.ListEvents(ctx, listOptions)
 			if err != nil {
