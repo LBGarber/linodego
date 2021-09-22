@@ -8,4 +8,7 @@ require (
 
 go 1.16
 
-retract v1.0.0 // Accidental branch push
+retract (
+	// Accidental branch push
+	v1.0.0
+)
