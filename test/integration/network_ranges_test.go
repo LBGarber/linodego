@@ -30,6 +30,7 @@ func TestListIPv6Range_instance(t *testing.T) {
 
 	for _, r := range result {
 		if r.RouteTarget == ipRange.RouteTarget && fmt.Sprintf("%s/%d", r.Range, r.Prefix) == ipRange.Range {
+			// Ensure GET returns the correct details
 			rangeView, err := client.GetIPv6Range(context.Background(), r.Range)
 			if err != nil {
 				t.Errorf("failed to get ipv6 range: %s", err)

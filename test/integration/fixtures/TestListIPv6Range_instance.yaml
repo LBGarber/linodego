@@ -14,9 +14,15 @@ interactions:
     url: https://api.linode.com/v4beta/linode/instances
     method: POST
   response:
+<<<<<<< HEAD
     body: '{"id": 34220889, "label": "linodego-test-instance", "group": "", "status":
       "provisioning", "created": "2018-01-02T03:04:05", "updated": "2018-01-02T03:04:05",
       "type": "g6-nanode-1", "ipv4": ["139.177.192.71"], "ipv6": "1234::5678/128",
+=======
+    body: '{"id": 33568589, "label": "linodego-test-instance", "group": "", "status":
+      "provisioning", "created": "2018-01-02T03:04:05", "updated": "2018-01-02T03:04:05",
+      "type": "g6-nanode-1", "ipv4": ["172.105.5.220"], "ipv6": "1234::5678/128",
+>>>>>>> 3fa078e (ElasticIP WIP)
       "image": "linode/debian9", "region": "ca-central", "specs": {"disk": 25600,
       "memory": 1024, "vcpus": 1, "gpus": 0, "transfer": 1000}, "alerts": {"cpu":
       90, "network_in": 10, "network_out": 10, "transfer_quota": 80, "io": 10000},
@@ -36,7 +42,11 @@ interactions:
       Cache-Control:
       - private, max-age=60, s-maxage=60
       Content-Length:
+<<<<<<< HEAD
       - "642"
+=======
+      - "641"
+>>>>>>> 3fa078e (ElasticIP WIP)
       Content-Security-Policy:
       - default-src 'none'
       Content-Type:
@@ -62,7 +72,11 @@ interactions:
     code: 200
     duration: ""
 - request:
+<<<<<<< HEAD
     body: '{"linode_id":34220889,"prefix_length":64}'
+=======
+    body: '{"linode_id":33568589,"prefix_length":64}'
+>>>>>>> 3fa078e (ElasticIP WIP)
     form: {}
     headers:
       Accept:
@@ -185,7 +199,11 @@ interactions:
     method: GET
   response:
     body: '{"range": "1234::5678", "prefix": 64, "region": "ca-central",
+<<<<<<< HEAD
       "is_bgp": false, "linodes": [34220889]}'
+=======
+      "is_bgp": false, "linodes": [33568589]}'
+>>>>>>> 3fa078e (ElasticIP WIP)
     headers:
       Access-Control-Allow-Credentials:
       - "true"
@@ -290,7 +308,11 @@ interactions:
       - application/json
       User-Agent:
       - linodego/dev https://github.com/linode/linodego
+<<<<<<< HEAD
     url: https://api.linode.com/v4beta/linode/instances/34220889
+=======
+    url: https://api.linode.com/v4beta/linode/instances/33568589
+>>>>>>> 3fa078e (ElasticIP WIP)
     method: DELETE
   response:
     body: '{}'
