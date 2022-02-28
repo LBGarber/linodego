@@ -52,6 +52,53 @@ func TestListIPv6Range_instance(t *testing.T) {
 	t.Errorf("failed to find ipv6 range with matching range")
 }
 
+// TestGetIPv6Range should return an IPv6 Range by id.
+func TestListIPv6Range_share(t *testing.T) {
+	client, ipRange, origInst, teardown, err := setupIPv6RangeInstance(t, []ipv6RangeModifier{}, "fixtures/TestListIPv6Range_share")
+	if err != nil {
+		t.Fatal(err)
+	}
+	defer teardown()
+
+	inst, err := createInstance(t, client, func(inst *InstanceCreateOptions) {
+		inst.Label = "linodego-shared-ip-inst"
+		inst.Region = origInst.Region
+	})
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	t.Cleanup(func() {
+		if err := client.DeleteInstance(context.Background(), inst.ID); err != nil {
+			if t != nil {
+				t.Errorf("Error deleting test Instance: %s", err)
+			}
+		}
+	})
+
+	// Share the ip with the new instance
+	err = client.ShareIPAddresses(context.Background(), IPAddressesShareOptions{
+		LinodeID: inst.ID,
+		IPs: []string{
+			ipRange.Range,
+		},
+	})
+
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	ips, err := client.GetInstanceIPAddresses(context.Background(), inst.ID)
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	fmt.Println("BASE RANGE", ipRange.Range)
+	for ip := range ips.IPv6.Global {
+		fmt.Println(ip)
+	}
+}
+
 type ipv6RangeModifier func(options *IPv6RangeCreateOptions)
 
 func createIPv6Range(t *testing.T, client *Client, ipv6RangeModifiers ...ipv6RangeModifier) (*IPv6Range, func(), error) {

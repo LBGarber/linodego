@@ -11,12 +11,12 @@ interactions:
       - application/json
       User-Agent:
       - linodego/dev https://github.com/linode/linodego
-    url: https://api.linode.com/v4/linode/instances
+    url: https://api.linode.com/v4beta/linode/instances
     method: POST
   response:
-    body: '{"id": 35079653, "label": "linodego-test-instance", "group": "", "status":
+    body: '{"id": 35079364, "label": "linodego-test-instance", "group": "", "status":
       "provisioning", "created": "2018-01-02T03:04:05", "updated": "2018-01-02T03:04:05",
-      "type": "g6-nanode-1", "ipv4": ["172.105.101.156"], "ipv6": "1234::5678/128",
+      "type": "g6-nanode-1", "ipv4": ["172.105.101.123"], "ipv6": "1234::5678/128",
       "image": "linode/debian9", "region": "ca-central", "specs": {"disk": 25600,
       "memory": 1024, "vcpus": 1, "gpus": 0, "transfer": 1000}, "alerts": {"cpu":
       90, "network_in": 10, "network_out": 10, "transfer_quota": 80, "io": 10000},
@@ -62,7 +62,7 @@ interactions:
     code: 200
     duration: ""
 - request:
-    body: '{"linode_id":35079653,"prefix_length":64}'
+    body: '{"linode_id":35079364,"prefix_length":64}'
     form: {}
     headers:
       Accept:
@@ -71,7 +71,7 @@ interactions:
       - application/json
       User-Agent:
       - linodego/dev https://github.com/linode/linodego
-    url: https://api.linode.com/v4/networking/ipv6/ranges
+    url: https://api.linode.com/v4beta/networking/ipv6/ranges
     method: POST
   response:
     body: '{"range": "1234::5678/64", "route_target": "1234::5678"}'
@@ -115,7 +115,7 @@ interactions:
     code: 200
     duration: ""
 - request:
-    body: ""
+    body: '{"region":"ca-central","type":"g6-nanode-1","label":"linodego-shared-ip-inst","root_pass":"R34lBAdP455","image":"linode/debian9","booted":false}'
     form: {}
     headers:
       Accept:
@@ -124,13 +124,17 @@ interactions:
       - application/json
       User-Agent:
       - linodego/dev https://github.com/linode/linodego
-    url: https://api.linode.com/v4/networking/ipv6/ranges
-    method: GET
+    url: https://api.linode.com/v4beta/linode/instances
+    method: POST
   response:
-    body: '{"data": [{"range": "1234::5678", "prefix": 64, "region": "us-southeast",
-      "route_target": "1234::5678"}, {"range": "1234::5678",
-      "prefix": 64, "region": "ca-central", "route_target": "1234::5678"}],
-      "page": 1, "pages": 1, "results": 2}'
+    body: '{"id": 35079366, "label": "linodego-shared-ip-inst", "group": "", "status":
+      "provisioning", "created": "2018-01-02T03:04:05", "updated": "2018-01-02T03:04:05",
+      "type": "g6-nanode-1", "ipv4": ["172.105.101.137"], "ipv6": "1234::5678/128",
+      "image": "linode/debian9", "region": "ca-central", "specs": {"disk": 25600,
+      "memory": 1024, "vcpus": 1, "gpus": 0, "transfer": 1000}, "alerts": {"cpu":
+      90, "network_in": 10, "network_out": 10, "transfer_quota": 80, "io": 10000},
+      "backups": {"enabled": false, "schedule": {"day": null, "window": null}, "last_successful":
+      null}, "hypervisor": "kvm", "watchdog_enabled": true, "tags": []}'
     headers:
       Access-Control-Allow-Credentials:
       - "true"
@@ -143,10 +147,9 @@ interactions:
       Access-Control-Expose-Headers:
       - X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Status
       Cache-Control:
-      - private, max-age=0, s-maxage=0, no-cache, no-store
       - private, max-age=60, s-maxage=60
       Content-Length:
-      - "295"
+      - "644"
       Content-Security-Policy:
       - default-src 'none'
       Content-Type:
@@ -157,9 +160,8 @@ interactions:
       - max-age=31536000
       Vary:
       - Authorization, X-Filter
-      - Authorization, X-Filter
       X-Accepted-Oauth-Scopes:
-      - ips:read_only
+      - linodes:read_write
       X-Content-Type-Options:
       - nosniff
       X-Frame-Options:
@@ -173,7 +175,7 @@ interactions:
     code: 200
     duration: ""
 - request:
-    body: ""
+    body: '{"ips":["1234::5678/64"],"linode_id":35079366}'
     form: {}
     headers:
       Accept:
@@ -182,51 +184,31 @@ interactions:
       - application/json
       User-Agent:
       - linodego/dev https://github.com/linode/linodego
-    url: 'https://api.linode.com/v4/networking/ipv6/ranges/1234::5678'
-    method: GET
+    url: https://api.linode.com/v4beta/networking/ips/share
+    method: POST
   response:
-    body: '{"range": "1234::5678", "prefix": 64, "region": "ca-central",
-      "is_bgp": false, "linodes": [35079653]}'
+    body: '{"errors": [{"reason": "Not found"}]}'
     headers:
-      Access-Control-Allow-Credentials:
-      - "true"
       Access-Control-Allow-Headers:
       - Authorization, Origin, X-Requested-With, Content-Type, Accept, X-Filter
       Access-Control-Allow-Methods:
       - HEAD, GET, OPTIONS, POST, PUT, DELETE
       Access-Control-Allow-Origin:
       - '*'
-      Access-Control-Expose-Headers:
-      - X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Status
-      Cache-Control:
-      - private, max-age=0, s-maxage=0, no-cache, no-store
-      - private, max-age=60, s-maxage=60
       Content-Length:
-      - "110"
-      Content-Security-Policy:
-      - default-src 'none'
+      - "37"
       Content-Type:
       - application/json
       Server:
       - nginx
-      Strict-Transport-Security:
-      - max-age=31536000
-      Vary:
-      - Authorization, X-Filter
-      - Authorization, X-Filter
       X-Accepted-Oauth-Scopes:
-      - ips:read_only
-      X-Content-Type-Options:
-      - nosniff
+      - '*'
       X-Frame-Options:
       - DENY
-      - DENY
       X-Oauth-Scopes:
-      - '*'
-      X-Xss-Protection:
-      - 1; mode=block
-    status: 200 OK
-    code: 200
+      - unknown
+    status: 404 Not Found
+    code: 404
     duration: ""
 - request:
     body: ""
@@ -238,7 +220,7 @@ interactions:
       - application/json
       User-Agent:
       - linodego/dev https://github.com/linode/linodego
-    url: 'https://api.linode.com/v4/networking/ipv6/ranges/1234::5678'
+    url: 'https://api.linode.com/v4beta/networking/ipv6/ranges/1234::5678'
     method: DELETE
   response:
     body: '{}'
@@ -291,7 +273,7 @@ interactions:
       - application/json
       User-Agent:
       - linodego/dev https://github.com/linode/linodego
-    url: https://api.linode.com/v4/linode/instances/35079653
+    url: https://api.linode.com/v4beta/linode/instances/35079364
     method: DELETE
   response:
     body: '{}'
