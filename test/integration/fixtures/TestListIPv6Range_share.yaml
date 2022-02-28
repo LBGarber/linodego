@@ -11,12 +11,12 @@ interactions:
       - application/json
       User-Agent:
       - linodego/dev https://github.com/linode/linodego
-    url: https://api.linode.com/v4beta/linode/instances
+    url: https://api.staging.linode.com/v4/linode/instances
     method: POST
   response:
-    body: '{"id": 35079364, "label": "linodego-test-instance", "group": "", "status":
+    body: '{"id": 35079784, "label": "linodego-test-instance", "group": "", "status":
       "provisioning", "created": "2018-01-02T03:04:05", "updated": "2018-01-02T03:04:05",
-      "type": "g6-nanode-1", "ipv4": ["172.105.101.123"], "ipv6": "1234::5678/128",
+      "type": "g6-nanode-1", "ipv4": ["139.177.198.40"], "ipv6": "1234::5678/128",
       "image": "linode/debian9", "region": "ca-central", "specs": {"disk": 25600,
       "memory": 1024, "vcpus": 1, "gpus": 0, "transfer": 1000}, "alerts": {"cpu":
       90, "network_in": 10, "network_out": 10, "transfer_quota": 80, "io": 10000},
@@ -36,7 +36,7 @@ interactions:
       Cache-Control:
       - private, max-age=60, s-maxage=60
       Content-Length:
-      - "643"
+      - "642"
       Content-Security-Policy:
       - default-src 'none'
       Content-Type:
@@ -62,7 +62,7 @@ interactions:
     code: 200
     duration: ""
 - request:
-    body: '{"linode_id":35079364,"prefix_length":64}'
+    body: '{"linode_id":35079784,"prefix_length":64}'
     form: {}
     headers:
       Accept:
@@ -71,7 +71,7 @@ interactions:
       - application/json
       User-Agent:
       - linodego/dev https://github.com/linode/linodego
-    url: https://api.linode.com/v4beta/networking/ipv6/ranges
+    url: https://api.staging.linode.com/v4/networking/ipv6/ranges
     method: POST
   response:
     body: '{"range": "1234::5678/64", "route_target": "1234::5678"}'
@@ -124,12 +124,12 @@ interactions:
       - application/json
       User-Agent:
       - linodego/dev https://github.com/linode/linodego
-    url: https://api.linode.com/v4beta/linode/instances
+    url: https://api.staging.linode.com/v4/linode/instances
     method: POST
   response:
-    body: '{"id": 35079366, "label": "linodego-shared-ip-inst", "group": "", "status":
+    body: '{"id": 35079786, "label": "linodego-shared-ip-inst", "group": "", "status":
       "provisioning", "created": "2018-01-02T03:04:05", "updated": "2018-01-02T03:04:05",
-      "type": "g6-nanode-1", "ipv4": ["172.105.101.137"], "ipv6": "1234::5678/128",
+      "type": "g6-nanode-1", "ipv4": ["139.177.198.51"], "ipv6": "1234::5678/128",
       "image": "linode/debian9", "region": "ca-central", "specs": {"disk": 25600,
       "memory": 1024, "vcpus": 1, "gpus": 0, "transfer": 1000}, "alerts": {"cpu":
       90, "network_in": 10, "network_out": 10, "transfer_quota": 80, "io": 10000},
@@ -149,7 +149,7 @@ interactions:
       Cache-Control:
       - private, max-age=60, s-maxage=60
       Content-Length:
-      - "644"
+      - "643"
       Content-Security-Policy:
       - default-src 'none'
       Content-Type:
@@ -175,7 +175,7 @@ interactions:
     code: 200
     duration: ""
 - request:
-    body: '{"ips":["1234::5678/64"],"linode_id":35079366}'
+    body: '{"ips":["1234::5678/64"],"linode_id":35079786}'
     form: {}
     headers:
       Accept:
@@ -184,10 +184,10 @@ interactions:
       - application/json
       User-Agent:
       - linodego/dev https://github.com/linode/linodego
-    url: https://api.linode.com/v4beta/networking/ips/share
+    url: https://api.staging.linode.com/v4/networking/ips/share
     method: POST
   response:
-    body: '{"errors": [{"reason": "Not found"}]}'
+    body: '{"errors": [{"reason": "Method Not Allowed"}]}'
     headers:
       Access-Control-Allow-Headers:
       - Authorization, Origin, X-Requested-With, Content-Type, Accept, X-Filter
@@ -196,7 +196,7 @@ interactions:
       Access-Control-Allow-Origin:
       - '*'
       Content-Length:
-      - "37"
+      - "46"
       Content-Type:
       - application/json
       Server:
@@ -207,8 +207,8 @@ interactions:
       - DENY
       X-Oauth-Scopes:
       - unknown
-    status: 404 Not Found
-    code: 404
+    status: 405 Method Not Allowed
+    code: 405
     duration: ""
 - request:
     body: ""
@@ -220,7 +220,7 @@ interactions:
       - application/json
       User-Agent:
       - linodego/dev https://github.com/linode/linodego
-    url: 'https://api.linode.com/v4beta/networking/ipv6/ranges/1234::5678'
+    url: 'https://api.staging.linode.com/v4/networking/ipv6/ranges/1234::5678'
     method: DELETE
   response:
     body: '{}'
@@ -273,7 +273,7 @@ interactions:
       - application/json
       User-Agent:
       - linodego/dev https://github.com/linode/linodego
-    url: https://api.linode.com/v4beta/linode/instances/35079364
+    url: https://api.staging.linode.com/v4/linode/instances/35079784
     method: DELETE
   response:
     body: '{}'
