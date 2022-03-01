@@ -80,7 +80,7 @@ func TestListIPv6Range_share(t *testing.T) {
 	err = client.ShareIPAddresses(context.Background(), IPAddressesShareOptions{
 		LinodeID: inst.ID,
 		IPs: []string{
-			ipRange.Range,
+			strings.TrimSuffix(ipRange.Range, "/64"),
 		},
 	})
 
